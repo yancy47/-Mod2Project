@@ -51,9 +51,10 @@ if (character) {
     return (
       <div>
         {/* <h1>Character Search</h1> */}
+    <FetchAPI />
     <Form getCharacter={getCharacter} />
     <About />
-    <FetchAPI />
+    
     </div>
   );
 }
