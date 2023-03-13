@@ -9,49 +9,54 @@ import CharacterDetails from './components/CharacterDetails';
 import FetchAPI from './components/FetchAPI';
 
 function App() {
-  let [character, setCharacter] = useState(null);
-
+  let [characters, setCharacters] = useState(null);
+  let [input] = useState(null)
+  let [test] = useState(null)
+  
   useEffect(() => {
-    getCharacter("Rick");
+    // getCharacter("Rick");
   }, []);
 
-  async function getCharacter(name) {
-    console.log(name);
+  async function getCharacter(characterName) {
+    // console.log("reached getCharacter")
+    console.log(characterName)
 
-    // const key = process.env.REACT_APP_KEY;
-    let url = `https://rickandmortyapi.com/api/character/`;
+    let url = `https://rickandmortyapi.com/api/character/?name=${characterName}`;
 
+  
     try {
       let response = await fetch(url);
       let data = await response.json();
-      setCharacter(data);
+      setCharacters(data.results);
     } catch (error) {
       console.log("something is wrong");
     }
   }
 
-//     fetch(url) 
-//     .then ((response) => response.json())
-//     .then ((data) => setCharacter(data.results)) 
-//     console.log(url)
+  // fetch(url)
+  //   .then((response) => response.json())
+  //   // .then((data) => console.log(data));
+  //    .then((data) => setCharacters(data.results));
+
+// console.log(url)
+// console.log(characters)
 // }
 
 
-if (character) {
+if (characters) {
   return (
     <div className="App">
-      <CharacterDetails character={character} />
+      <h1>Search for a Character</h1>
       <Form getCharacter={getCharacter} />
-      {/* <h1> Name: {character.name}</h1>
-          <img src={character.image} alt={character.Title} /> */}
+      <CharacterDetails characters={characters} />
       </div>
     );
   } else {
     // if charater is null
     return (
       <div>
-        {/* <h1>Character Search</h1> */}
-    <FetchAPI />
+        <h1>Character Search</h1>
+    {/* <FetchAPI /> */}
     <Form getCharacter={getCharacter} />
     <About />
     

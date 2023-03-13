@@ -15,13 +15,8 @@ function handleSubmit(e) {
     getCharacter(input);
 }
 
-// let characterName = character.map((obj)=> {
-//     <p>{obj.common_name}</p> 
-// })
-
 return (
     <div>
-      <h1>Character Search</h1>
       <form onSubmit={handleSubmit}>
         <input value={input} onChange={handleChange} style= {{ 
                 hovercolor: 'green',
